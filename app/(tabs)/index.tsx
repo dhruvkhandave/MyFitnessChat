@@ -1,98 +1,177 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from "react-native";
+import { Fonts } from "@/constants/theme";
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
-
-export default function HomeScreen() {
+export default function Chat() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
-
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      <View style={styles.backgroundTop} />
+      <View style={styles.backgroundGlow} />
+      <View style={styles.ring} />
+      <View style={styles.hero}>
+        <View style={styles.pill}>
+          <View style={styles.pillDot} />
+          <Text style={styles.pillText}>New: AI nutrition co-pilot</Text>
+        </View>
+        <Text style={styles.title}>Welcome to MyFitnessChat</Text>
+        <Text style={styles.subtitle}>
+          Your smart food tracker. Log meals by voice, photo, or text and get instant macro
+          breakdowns with coaching that keeps you consistent.
+        </Text>
+        <View style={styles.statsRow}>
+          <View style={styles.stat}>
+            <Text style={styles.statValue}>4 sec</Text>
+            <Text style={styles.statLabel}>Avg. log time</Text>
+          </View>
+          <View style={styles.statDivider} />
+          <View style={styles.stat}>
+            <Text style={styles.statValue}>+26%</Text>
+            <Text style={styles.statLabel}>Better adherence</Text>
+          </View>
+          <View style={styles.statDivider} />
+          <View style={styles.stat}>
+            <Text style={styles.statValue}>24/7</Text>
+            <Text style={styles.statLabel}>Coach support</Text>
+          </View>
+        </View>
+        <View style={styles.actions}>
+          <Pressable style={[styles.button, styles.primary]}>
+            <Text style={styles.primaryText}>Create account</Text>
+          </Pressable>
+          <Pressable style={[styles.button, styles.ghost]}>
+            <Text style={styles.ghostText}>Sign in</Text>
+          </Pressable>
+        </View>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    backgroundColor: "#05070b",
+    padding: 24,
+    justifyContent: "center",
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
+  backgroundTop: {
+    position: "absolute",
     left: 0,
-    position: 'absolute',
+    right: 0,
+    top: 0,
+    height: "45%",
+    backgroundColor: "#0f172a",
+  },
+  backgroundGlow: {
+    position: "absolute",
+    width: 380,
+    height: 380,
+    borderRadius: 190,
+    backgroundColor: "#22d3ee",
+    opacity: 0.18,
+    top: -120,
+    right: -120,
+  },
+  ring: {
+    position: "absolute",
+    width: 260,
+    height: 260,
+    borderRadius: 130,
+    borderWidth: 1,
+    borderColor: "rgba(148, 163, 184, 0.15)",
+    bottom: -80,
+    left: -60,
+  },
+  hero: {
+    paddingHorizontal: 4,
+  },
+  pill: {
+    alignSelf: "flex-start",
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "rgba(45, 212, 191, 0.12)",
+    borderRadius: 999,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderWidth: 1,
+    borderColor: "rgba(45, 212, 191, 0.35)",
+    marginBottom: 16,
+  },
+  pillDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: "#2dd4bf",
+    marginRight: 8,
+  },
+  pillText: {
+    color: "#a7f3d0",
+    fontSize: 12,
+    fontWeight: "600",
+    letterSpacing: 0.6,
+    textTransform: "uppercase",
+  },
+  title: {
+    fontSize: 34,
+    fontWeight: "700",
+    color: "#f8fafc",
+    marginBottom: 14,
+    fontFamily: Fonts.serif,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: "#cbd5e1",
+    lineHeight: 22,
+    marginBottom: 24,
+  },
+  statsRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 24,
+    gap: 12,
+  },
+  stat: {
+    flex: 1,
+  },
+  statValue: {
+    color: "#f8fafc",
+    fontSize: 18,
+    fontWeight: "700",
+    marginBottom: 4,
+  },
+  statLabel: {
+    color: "#94a3b8",
+    fontSize: 12,
+  },
+  statDivider: {
+    width: 1,
+    height: 32,
+    backgroundColor: "rgba(148, 163, 184, 0.2)",
+  },
+  actions: {
+    width: "100%",
+    gap: 12,
+  },
+  button: {
+    paddingVertical: 14,
+    borderRadius: 14,
+    alignItems: "center",
+  },
+  primary: {
+    backgroundColor: "#2dd4bf",
+  },
+  primaryText: {
+    color: "#052e2b",
+    fontSize: 16,
+    fontWeight: "600",
+  },
+  ghost: {
+    backgroundColor: "rgba(15, 23, 42, 0.35)",
+    borderWidth: 1,
+    borderColor: "rgba(148, 163, 184, 0.3)",
+  },
+  ghostText: {
+    color: "#e2e8f0",
+    fontSize: 15,
+    fontWeight: "500",
   },
 });

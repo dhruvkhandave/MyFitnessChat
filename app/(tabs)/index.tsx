@@ -14,7 +14,7 @@ export default function Chat() {
         </View>
         <Text style={styles.title}>Welcome to MyFitnessChat</Text>
         <Text style={styles.subtitle}>
-          Your smart food tracker. Log meals by voice, photo, or text and get instant macro
+          Your smart food tracker. Log meals by text or voice (coming soon) and get instant macro
           breakdowns with coaching that keeps you consistent.
         </Text>
         <View style={styles.statsRow}>
@@ -42,6 +42,7 @@ export default function Chat() {
           </Pressable>
         </View>
       </View>
+      <Text style={styles.byline}>by dk</Text>
     </View>
   );
 }
@@ -173,5 +174,14 @@ const styles = StyleSheet.create({
     color: "#e2e8f0",
     fontSize: 15,
     fontWeight: "500",
+  },
+  byline: {
+    position: "absolute",
+    right: 24,
+    bottom: 18,
+    color: "#2dd4bf",
+    fontSize: 12,
+    letterSpacing: 0.4,
+    textTransform: "uppercase",
   },
 });
